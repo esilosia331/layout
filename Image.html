@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Links Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery a {
+            display: block;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .gallery img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Image Links Gallery</h1>
+
+    <div class="gallery">
+        <a href="https://www.google.com" target="_blank">
+            <img src="https://via.placeholder.com/300x200?text=Google" alt="Google">
+        </a>
+
+        <a href="https://www.youtube.com" target="_blank">
+            <img src="https://via.placeholder.com/300x200?text=YouTube" alt="YouTube">
+        </a>
+
+        <a href="https://www.facebook.com" target="_blank">
+            <img src="https://via.placeholder.com/300x200?text=Facebook" alt="Facebook">
+        </a>
+    </div>
+
+</body>
+</html>
+

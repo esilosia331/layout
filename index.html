@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Website Layout</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .nav {
+      background: #333;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav .left, .nav .right {
+      display: flex;
+      gap: 15px;
+    }
+    .nav a {
+      color: rgb(236, 12, 12);
+      text-decoration: none;
+    }
+    .banner {
+      background-color: #1093d9;
+      text-align: center;
+      padding: 40px 0;
+      font-size: 24px;
+    }
+    .main {
+      display: flex;
+      padding: 20px;
+      background-color: #f9f9f9;
+      min-height: 300px;
+    }
+    .content {
+      flex: 3;
+      padding: 20px;
+      background-color: white;
+      margin-right: 20px;
+    }
+    .sidebar {
+      flex: 1;
+      padding: 20px;
+      background-color: #ddd;
+    }
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    .myImage{
+      width: 500px;
+      height: auto;
+    }
+  </style>
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+
+  <!-- I: Navigation Bar -->
+  <div class="nav">
+    <div class="left">
+      <a href="#">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="projects.html">Our Projects</a>
+    </div>
+    <div class="right">
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+    </div>
+  </div>
+
+  <!-- II: Banner -->
+  <div class="banner">
+    Kenje Enterprises Limited
+  </div>
+
+  <!-- III: Main container -->
+  <div class="main">
+    <!-- IV: Content -->
+    <div class="content">
+      <h2>Our Services</h2>
+      <div class="row">
+        <div class="col-6">
+          <img class="img-fluid" src="/layout/img/co.jpg" alt="">
+        </div>
+        <div class="col-6">
+          <p> 
+            <li>Construction & Site Management</li>
+            We coordinate and supervise all construction workers, selecting the best tools and materials, make safety inspections and ensure
+            construction and site safety. We check and prepare site reports, designs and drawings all while maintaining quality control procedures.
+            <li>Road & Civil Works</li>
+            We prode a wide range of groundworks and civil engineering services that have earned us a reputation for quality works and the 
+            ability consistently complete projects on schedule and within budget.
+            <li>Building & Structural Works</li>
+            We provide complete buildings and construction solutions. We also provide building maintenance and facility management solutions. 
+            <li>Construction of Water Dams</li>
+            We set up water reservoirs for storage needs like water tanks constructed out of bricks or stones. 
+            <li>Borehole Drilling & Equipping</li>
+            Our modern drilling equipment is capable of drilling in diverse geological formations.  
+          </p>
+        </div>
+      </div>
+        
+
+    </div>
+
+    <!-- V: Sidebar -->
+    <div class="sidebar">
+      <h3>Our Values</h3>
+      <p>
+        <li>Quality</li>
+        <li>Safety</li>
+        <li>Integrity</li>
+        <li>Innovation</li>
+        <li>Customer Satisfaction</li>
+        <li>Sustainability</li>
+        <li>Professionalism</li>
+    </p>
+    </div>
+  </div>
+
+  <!-- VI: Footer -->
+  <div class="footer">
+    &copy; 2025 Kenje Enterprises Limited. All rights reserved.
+    <p>Contact us at <a href="mailto:kenjenter@gmail.com">kenjenter@gmail.com</a></p>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
