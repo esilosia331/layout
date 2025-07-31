@@ -12,7 +12,7 @@ $subject = $_POST['subject'];
 $message = $_POST['message'];
 require 'dbConnect.php';
 // Check if the form is submitted
-if(isset($_POST['send_message'])) {
+if (isset($_POST['send_message'])) {
     // Retrieve form data
     $allnames = $_POST['allnames'];
     $email = $_POST['email'];
@@ -21,7 +21,7 @@ if(isset($_POST['send_message'])) {
     $message = $_POST['message'];
 
     // Validate inputs
-    if(empty($allnames) || empty($email) || empty($phone) || empty($subject) || empty($message)) {
+    if (empty($allnames) || empty($email) || empty($phone) || empty($subject) || empty($message)) {
         echo "All fields are required.";
         exit;
     }
@@ -31,7 +31,7 @@ if(isset($_POST['send_message'])) {
     $stmt->bind_param("sssss", $allnames, $email, $phone, $subject, $message);
 
     // Execute the statement
-    if($stmt->execute()) {
+    if ($stmt->execute()) {
         header("Location: contacts.html?status=success");
         exit;
     } else {
