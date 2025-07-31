@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+include 'includes/header.php';  
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -96,5 +98,6 @@
       <li>Construction of Webuye Market</li>
       <li>Grading and Gravelling of KeRRA Roads in Bomet County</li>
     </p>
-  </body>
-</html>
+  <?php
+    include 'includes/footer.php';  
+    ?>
