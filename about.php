@@ -42,6 +42,7 @@ include 'includes/header.php';
     product is always delivered on time every  time.
   </p>
 </div>
+
 <?php
 include 'includes/footer.php';
 ?>

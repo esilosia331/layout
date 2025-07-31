@@ -1,6 +1,7 @@
 <?php
 include 'includes/header.php';
 ?>
+
 <div class="container">
   <h2>Add Goods and Services</h2>
   <hr />
@@ -24,6 +25,7 @@ include 'includes/header.php';
     <button type="submit" class="btn btn-primary">Save</button>
   </form>
 </div>
+
 <?php
 include 'includes/footer.php';
 ?>
