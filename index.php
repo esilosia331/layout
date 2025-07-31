@@ -2,8 +2,6 @@
 include 'includes/header.php';
 ?>
 
-
-
 <!-- II: Banner -->
 <div class="banner">Kenje Enterprises Limited</div>
 
