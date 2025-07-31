@@ -1,7 +1,7 @@
 <?php
 $hostserver = "127.0.0.1"; //ip address:127.0.0.1 or domain:localhost
-$username = "root";
-$password = "";
+$username = "jb";
+$password = "password";
 $dbname = "test_db";
 
 // Create connection

@@ -1,6 +1,7 @@
 <?php
 
-
+// include 'dbConnect.php';
+require 'dbConnect.php';
 
 // processes.php
 date_default_timezone_set('Africa/Nairobi');
