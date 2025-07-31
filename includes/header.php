@@ -20,3 +20,5 @@
     <!-- I: Navigation Bar -->
 
     <?php include 'includes/nav.php'; ?>
+
+    <!-- header ends here -->

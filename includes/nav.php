@@ -17,10 +17,10 @@
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
+                    <a class="nav-link" href="about.php">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="projects.html">Our Projects</a>
+                    <a class="nav-link" href="projects.php">Our Projects</a>
                 </li>
                 <li class="nav-item dropdown d-flex">
                     <a
@@ -32,15 +32,15 @@
                         Auth
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="login.html">Login</a></li>
+                        <li><a class="dropdown-item" href="login.php">Login</a></li>
                         <li>
-                            <a class="dropdown-item" href="register.html">Register</a>
+                            <a class="dropdown-item" href="register.php">Register</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
                         <li>
-                            <a class="dropdown-item" href="add_goods_services.html">
+                            <a class="dropdown-item" href="add_goods_services.php">
                                 Add Goods and Services
                             </a>
                         </li>
