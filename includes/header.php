@@ -18,3 +18,5 @@
 
 <body>
     <!-- I: Navigation Bar -->
+
+    <?php include 'includes/nav.php'; ?>
