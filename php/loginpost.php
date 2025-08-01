@@ -28,12 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user'] = $user;
             echo "Login successful. Welcome, " . htmlspecialchars($user) . "!";
 
-            // Set session variables
-            $_SESSION['user_id'] = $id;
-            $_SESSION['username'] = $user;
-
-
-            // gene
+            // generate 2fa code
+            $twofa_code = rand(100000, 999999);
 
             // header('Location: dashboard.php'); exit;
 
