@@ -31,6 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Redirect to the 2fa page
             header('Location: ../2fa.php');
+
+            exit;
         } else {
             echo "Invalid password.";
         }
