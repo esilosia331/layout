@@ -1,54 +1,43 @@
 <?php
-// Start session
 session_start();
-
 require 'dbConnect.php';
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
+    $token = trim($_POST['token'] ?? '');
 
-    $stmt = $conn->prepare("SELECT user_id, email, password FROM user_table WHERE email = ?");
-    $stmt->bind_param("s", $username);
+    // Make sure user_id is in session from previous login step
+    if (!isset($_SESSION['user_id'])) {
+        echo "Session expired. Please log in again.";
+        exit;
+    }
+
+    $user_id = $_SESSION['user_id'];
+
+    $stmt = $conn->prepare("SELECT token FROM user_table WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
     $stmt->execute();
-    $stmt->store_result();
+    $stmt->bind_result($db_token);
+    $stmt->fetch();
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $user, $hashed_password);
-        $stmt->fetch();
+    if ($token === $db_token) {
+        // 2FA successful
+        unset($_SESSION['2fa_pending']);
+        // Optionally clear the token in DB
+        $clearStmt = $conn->prepare("UPDATE user_table SET token = NULL WHERE user_id = ?");
+        $clearStmt->bind_param("i", $user_id);
+        $clearStmt->execute();
+        $clearStmt->close();
 
-        if (password_verify($password, $hashed_password)) {
-            $_SESSION['user'] = $user;
-            $_SESSION['user_id'] = $id;
-
-            // Generate 2FA code
-            $twofa_code = rand(100000, 999999);
-
-            // Store the 2FA code in database
-            $updateStmt = $conn->prepare("UPDATE user_table SET token = ? WHERE user_id = ?");
-            $updateStmt->bind_param("si", $twofa_code, $id);
-            $updateStmt->execute();
-            $updateStmt->close();
-
-            // Optionally, send the 2FA code via email
-            // mail($user, "Your 2FA Code", "Your code is: $twofa_code");
-
-            // Store 2FA status in session
-            $_SESSION['2fa_pending'] = true;
-
-            // Redirect to the 2FA verification page
-            header('Location: ../2fa.php');
-            exit;
-        } else {
-            echo "Invalid password.";
-        }
+        echo "2FA verification successful. You are logged in.";
+        // Redirect or load the protected page
+        // header('Location: ../dashboard.php');
+        // exit;
     } else {
-        echo "Username not found.";
+        echo "Invalid 2FA code.";
     }
 
     $stmt->close();
