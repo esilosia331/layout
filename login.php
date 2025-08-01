@@ -6,7 +6,7 @@ include 'includes/header.php';
 
 <div class="container">
     <h2>Login</h2>
-    <form action="login.php" method="POST">
+    <form action="php/loginpost.php" method="POST">
         <label class="form-label" for="username">Username:</label>
         <input class="form-control" type="text" id="username" name="username" required>
 
@@ -19,6 +19,8 @@ include 'includes/header.php';
         <button type="Login" class="btn btn-primary">Save</button>
     </form>
 </div>
+
+
 <?php
 include 'includes/footer.php';
 ?>
