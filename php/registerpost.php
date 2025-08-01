@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Prepare the SQL statement to insert a new user
 $stmt = $conn->prepare("INSERT INTO user_table (email,username, password) VALUES (?,?, ?)");
 // Bind parameters to the SQL statement (email, username, password)
-$stmt->bind_param("ss", $email, $username, $password);
+$stmt->bind_param($email, $username, $password);
 // Execute the SQL statement
 $stmt->execute();
 
