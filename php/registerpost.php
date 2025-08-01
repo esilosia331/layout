@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Check if the username already exists
-    $checkStmt = $conn->prepare("SELECT id FROM user_table WHERE username = ?");
+    $checkStmt = $conn->prepare("SELECT user_id FROM user_table WHERE username = ?");
     if (!$checkStmt) {
         echo "Error preparing statement: " . $conn->error;
         exit;
