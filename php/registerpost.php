@@ -32,3 +32,6 @@ $stmt->execute();
 echo "User created!";
 $stmt->close();
 $conn->close();
+// Redirect to login page or another page
+header('Location: login.php'); exit;
+?>
