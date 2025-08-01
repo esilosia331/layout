@@ -28,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user'] = $user;
             echo "Login successful. Welcome, " . htmlspecialchars($user) . "!";
             // header('Location: dashboard.php'); exit;
+
+            // Redirect to the 2fa page
+            header('Location: ../2fa.php');
         } else {
             echo "Invalid password.";
         }
@@ -39,3 +42,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $conn->close();
+
+
