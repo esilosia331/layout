@@ -2,24 +2,40 @@
 // Start session
 session_start();
 
-// Dummy credentials
-$valid_username = 'admin';
-$valid_password = 'password123';
+// include 'dbConnect.php';
+require 'dbConnect.php';
 
-// Check if form was submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'] ?? '';
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    // Check credentials
-    if ($username === $valid_username && $password === $valid_password) {
-        $_SESSION['user'] = $username;
-        echo "Login successful. Welcome, $username!";
-        // redirect or load dashboard here
-        // header('Location: dashboard.php'); exit;
+    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+
+    $stmt->store_result();
+
+    if ($stmt->num_rows === 1) {
+        $stmt->bind_result($id, $user, $hashed_password);
+        $stmt->fetch();
+
+        if (password_verify($password, $hashed_password)) {
+            $_SESSION['user'] = $user;
+            echo "Login successful. Welcome, " . htmlspecialchars($user) . "!";
+            // header('Location: dashboard.php'); exit;
+        } else {
+            echo "Invalid password.";
+        }
     } else {
-        echo "Invalid username or password.";
+        echo "Username not found.";
     }
-} else {
-    echo "Invalid request method.";
+
+    $stmt->close();
 }
+
+$conn->close();
