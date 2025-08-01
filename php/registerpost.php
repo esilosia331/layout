@@ -12,12 +12,12 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get and sanitize the username from POST data
     $username = trim($_POST['username'] ?? '');
-    $username = trim($_POST['username'] ?? '');
+    $email = trim($_POST['email'] ?? '');
     // Hash the password from POST data
     $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);
 
     // Validate that username and password are not empty
-    if (empty($username) || empty($password)) {
+    if (empty($username) || empty($username) || empty($password)) {
         echo "Username and password are required.";
         exit;
     }
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Prepare the SQL statement to insert a new user
 $stmt = $conn->prepare("INSERT INTO user_table (email,username, password) VALUES (?,?, ?)");
 // Bind parameters to the SQL statement (email, username, password)
-$stmt->bind_param("ss", $username, $username, $password);
+$stmt->bind_param("ss", $email, $username, $password);
 // Execute the SQL statement
 $stmt->execute();
 
