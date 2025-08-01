@@ -38,6 +38,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
     $checkStmt->close();
+
+    // Check if the email already exists
+    $emailCheckStmt = $conn->prepare("SELECT user_id FROM user_table WHERE email = ?");
+    if (!$emailCheckStmt) {
+        echo "Error preparing statement: " . $conn->error;
+        exit;
+    }
+    $emailCheckStmt->bind_param("s", $email);
+    $emailCheckStmt->execute();
+    $emailCheckStmt->store_result();
+
+    if ($emailCheckStmt->num_rows > 0) {
+        echo "Email is already registered.";
+        $emailCheckStmt->close();
+        exit;
+    }
+    $emailCheckStmt->close();
 } else {
     // If not a POST request, show error and exit
     echo "Invalid request method.";
