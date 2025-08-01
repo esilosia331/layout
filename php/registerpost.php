@@ -23,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Invalid request method.";
     exit;
 }
+
+// Prepare and bind
 $stmt = $conn->prepare("INSERT INTO user_table (email,username, password) VALUES (?,?, ?)");
 $stmt->bind_param("ss", $username, $username, $password);
 $stmt->execute();
