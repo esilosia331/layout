@@ -34,7 +34,7 @@ if (!$stmt) {
     exit;
 }
 // Bind parameters to the SQL statement (email, username, password)
-$stmt->bind_param($email, $username, $password);
+$stmt->bind_param("sss", $email, $username, $password);
 // Execute the SQL statement
 $stmt->execute();
 
