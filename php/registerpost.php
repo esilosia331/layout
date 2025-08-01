@@ -21,6 +21,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Username and password are required.";
         exit;
     }
+
+    // Check if the username already exists
+    $checkStmt = $conn->prepare("SELECT id FROM user_table WHERE username = ?");
+    if (!$checkStmt) {
+        echo "Error preparing statement: " . $conn->error;
+        exit;
+    }
+    $checkStmt->bind_param("s", $username);
+    $checkStmt->execute();
+    $checkStmt->store_result();
+
+    if ($checkStmt->num_rows > 0) {
+        echo "Username is already taken.";
+        $checkStmt->close();
+        exit;
+    }
+    $checkStmt->close();
 } else {
     // If not a POST request, show error and exit
     echo "Invalid request method.";
