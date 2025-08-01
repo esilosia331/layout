@@ -7,7 +7,7 @@ include 'includes/header.php';
 
 <div class="container">
   <h2>Register</h2>
-  <form action="register.php" method="POST">
+  <form action="php/registerpost.php" method="POST">
     <label class="form-label" for="username">Username:</label>
     <input
       onkeyup="validateName()"
