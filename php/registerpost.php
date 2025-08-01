@@ -45,5 +45,5 @@ $stmt->close();
 $conn->close();
 
 // Redirect to the login page
-header('Location: login.php');
+header('Location: ../login.php');
 exit;
