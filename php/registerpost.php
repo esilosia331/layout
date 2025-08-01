@@ -1,37 +1,44 @@
 <?php
 
-// include 'dbConnect.php';
+// Include the database connection file
 require 'dbConnect.php';
 
-// Check connection
+// Check if the database connection was successful
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// Create a new user
 
-// $username = "admin";
-// $password = password_hash("password123", PASSWORD_DEFAULT);
+// Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get and sanitize the username from POST data
     $username = trim($_POST['username'] ?? '');
+    // Hash the password from POST data
     $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);
 
+    // Validate that username and password are not empty
     if (empty($username) || empty($password)) {
         echo "Username and password are required.";
         exit;
     }
 } else {
+    // If not a POST request, show error and exit
     echo "Invalid request method.";
     exit;
 }
 
-// Prepare and bind
+// Prepare the SQL statement to insert a new user
 $stmt = $conn->prepare("INSERT INTO user_table (email,username, password) VALUES (?,?, ?)");
+// Bind parameters to the SQL statement (email, username, password)
 $stmt->bind_param("ss", $username, $username, $password);
+// Execute the SQL statement
 $stmt->execute();
 
+// Output success message
 echo "User created!";
+// Close the statement and database connection
 $stmt->close();
 $conn->close();
-// Redirect to login page or another page
-header('Location: login.php'); exit;
-?>
+
+// Redirect to the login page
+header('Location: login.php');
+exit;
