@@ -31,6 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // generate 2fa code
             $twofa_code = rand(100000, 999999);
 
+            // Send email with the 2FA code
+            $to = $user;
+            $subject = "Your 2FA Verification Code";
+            $message = "Your verification code is: " . $twofa_code;
+            $headers = "From: no-reply@example.com\r\n";
+            mail($to, $subject, $message, $headers);
+
             // Store the 2fa code in database
             $updateStmt = $conn->prepare("UPDATE user_table SET token = ? WHERE user_id = ?");
             $updateStmt->bind_param("si", $twofa_code, $id);
