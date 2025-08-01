@@ -12,6 +12,7 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get and sanitize the username from POST data
     $username = trim($_POST['username'] ?? '');
+    $username = trim($_POST['username'] ?? '');
     // Hash the password from POST data
     $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);
 
