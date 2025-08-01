@@ -31,6 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // generate 2fa code
             $twofa_code = rand(100000, 999999);
 
+            // Store the 2fa code in database
+            $updateStmt = $conn->prepare("UPDATE user_table SET twofa_code = ? WHERE user_id = ?");
+            $updateStmt->bind_param("si", $twofa_code, $id);
+
             // header('Location: dashboard.php'); exit;
 
             // Redirect to the 2fa page
