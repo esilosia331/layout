@@ -27,6 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (password_verify($password, $hashed_password)) {
             $_SESSION['user'] = $user;
             echo "Login successful. Welcome, " . htmlspecialchars($user) . "!";
+
+            // Set session variables
+            $_SESSION['user_id'] = $id;
+            $_SESSION['username'] = $user;
+
+
+            // gene
+
             // header('Location: dashboard.php'); exit;
 
             // Redirect to the 2fa page
