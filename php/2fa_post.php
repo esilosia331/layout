@@ -1,15 +1,17 @@
 <?php
-session_start();
-require 'dbConnect.php';
+session_start(); // Start the session to access session variables
+require 'dbConnect.php'; // Include database connection
 
+// Check if the database connection was successful
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Only process if the request is a POST (form submission)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = trim($_POST['token'] ?? '');
+    $token = trim($_POST['token'] ?? ''); // Get the submitted 2FA token
 
-    // Make sure user_id is in session from previous login step
+    // Ensure user_id is set in the session (from previous login step)
     if (!isset($_SESSION['user_id'])) {
         echo "Session expired. Please log in again.";
         exit;
@@ -17,16 +19,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $user_id = $_SESSION['user_id'];
 
+    // Prepare SQL to fetch the stored token for this user
     $stmt = $conn->prepare("SELECT token FROM user_table WHERE user_id = ?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $stmt->bind_result($db_token);
     $stmt->fetch();
 
+    // Compare submitted token with the one in the database
     if ($token === $db_token) {
         // 2FA successful
-        unset($_SESSION['2fa_pending']);
-        // Optionally clear the token in DB
+        unset($_SESSION['2fa_pending']); // Remove 2FA pending flag from session
+
+        // Optionally clear the token in the database for security
         $clearStmt = $conn->prepare("UPDATE user_table SET token = NULL WHERE user_id = ?");
         $clearStmt->bind_param("i", $user_id);
         $clearStmt->execute();
@@ -37,11 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // header('Location: ../dashboard.php');
         // exit;
     } else {
+        // Token did not match
         echo "Invalid 2FA code.";
     }
 
-    $stmt->close();
+    $stmt->close(); // Close the statement
 }
 
-$conn->close();
+$conn->close(); // Close the database connection
 ?>
