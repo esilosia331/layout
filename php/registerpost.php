@@ -1,5 +1,7 @@
 <?php
-$conn = new mysqli("localhost", "your_user", "your_pass", "your_db");
+
+// include 'dbConnect.php';
+require 'dbConnect.php';
 
 $username = "admin";
 $password = password_hash("password123", PASSWORD_DEFAULT);
