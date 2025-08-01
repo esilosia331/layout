@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);
 
     // Validate that username and password are not empty
-    if (empty($username) || empty($username) || empty($password)) {
+    if (empty($email) || empty($username) || empty($password)) {
         echo "Username and password are required.";
         exit;
     }
